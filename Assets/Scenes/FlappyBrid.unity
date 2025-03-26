@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 79477124}
-  - component: {fileID: 79477126}
+  - component: {fileID: 79477125}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -154,7 +154,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &79477126
+--- !u!114 &79477125
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -426,9 +426,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 79477125}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Play
+        m_MethodName: ResetGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1121,7 +1121,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 47a1c54c1427e10458e1e21315a00666, type: 3}
   - {fileID: 21300000, guid: 477a76ff29832b2499b9244de7070326, type: 3}
   gravity: -9.8
-  strengh: 5
+  strength: 5
   jump: {fileID: 8300000, guid: 0cfd686e729716143bcc873eb2da1ac1, type: 3}
   lose: {fileID: 8300000, guid: 9db532a0b6825c046815a6e839c5f0ba, type: 3}
   pass: {fileID: 8300000, guid: 96a533caff5036f4db788f13f25cf50d, type: 3}

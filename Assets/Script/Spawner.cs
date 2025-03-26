@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
 
     private void OnEnable()
     {
-        InvokeRepeating(nameof(Spawn), spawnRate, spawnRate);
+        InvokeRepeating("Spawn", spawnRate, spawnRate);
     }
 
     private void OnDisable()

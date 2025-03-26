@@ -8,22 +8,24 @@ public class GameManager : MonoBehaviour
     public GameObject playButton;
     public GameObject gameOver;
     public GameObject startPanel;
-    bool gameStarted = false;
     public Spawner spawner;
+    private bool gameStarted = false;
     private int score;
 
     private void Awake()
     {
         Application.targetFrameRate = 60;
 
-        startPanel.SetActive(true);
-        playButton.SetActive(false);
-        gameOver.SetActive(false);
+        ResetGame();
         Pause();
+    }
 
-        if (spawner != null)
-            spawner.enabled = false;
-
+    private void Update()
+    {
+        if (!gameStarted && (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
+        {
+            Play();
+        }
     }
 
     public void Play()
@@ -36,8 +38,7 @@ public class GameManager : MonoBehaviour
         playButton.SetActive(false);
         gameOver.SetActive(false);
 
-        Pipes[] pipes = FindObjectsOfType<Pipes>();
-        foreach (var pipe in pipes)
+        foreach (var pipe in FindObjectsOfType<Pipes>())
         {
             Destroy(pipe.gameObject);
         }
@@ -47,34 +48,14 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1f;
         player.enabled = true;
-
-    }
-    private void Update()
-    {
-        
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && !gameStarted)
-        {
-             Play();
-        }
-    }
-    private void Start()
-    {
-
-        Pause();
-    }
-
-    public void Pause()
-    {
-        Time.timeScale = 0f;
-        player.enabled = false;
     }
 
     public void GameOver()
     {
         gameOver.SetActive(true);
         playButton.SetActive(true);
-        Pause();
         gameStarted = false;
+        Pause();
 
         if (spawner != null)
             spawner.enabled = false;
@@ -84,6 +65,25 @@ public class GameManager : MonoBehaviour
     {
         score++;
         scoreText.text = score.ToString();
+    }
 
+    public void ResetGame()
+    {
+        startPanel.SetActive(true);
+        playButton.SetActive(false);
+        gameOver.SetActive(false);
+        gameStarted = false;
+
+        Time.timeScale = 0f;
+        player.enabled = false;
+
+        if (spawner != null)
+            spawner.enabled = false;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        player.enabled = false;
     }
 }
